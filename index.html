@@ -53,17 +53,17 @@
 .lock-time span{font-size:clamp(14px,1.3vw,18px);font-weight:600;margin-top:15px}
 .spotlight-chip{position:absolute;right:clamp(18px,3vw,46px);top:clamp(18px,3vh,32px);z-index:2;display:flex;flex-direction:column;align-items:center;gap:5px;color:#fff;text-shadow:0 2px 12px #000;font-size:11px}
 .spotlight-chip span{width:40px;height:40px;border:1px solid #ffffff80;border-radius:12px;display:grid;place-items:center;background:#0b142b45;backdrop-filter:blur(16px);font-size:20px}
-.lock-widgets{bottom:max(38px,5.2vh);width:min(660px,calc(100% - 36px));}
+.lock-widgets{bottom:max(58px,10.5vh);width:min(660px,calc(100% - 36px));}
 .widget-manage{width:max-content;max-width:100%;margin:0 auto 9px;padding:9px 18px;border:1px solid #ffffff38;border-radius:10px;background:#111a2c80;backdrop-filter:blur(24px);box-shadow:0 8px 25px #0002;color:#fff;font-size:12px;font-weight:600}
 .widget-row{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
 .lock-widget{min-width:0;min-height:100px;padding:15px 17px;border:1px solid #ffffff42;border-radius:15px;background:rgba(20,26,38,.43);backdrop-filter:blur(26px) saturate(135%);-webkit-backdrop-filter:blur(26px) saturate(135%);box-shadow:0 12px 34px #0003,inset 0 1px #ffffff18}
 .lock-widget small{font-size:11px;color:#ffffffc9;margin-bottom:9px}
 .lock-widget b{display:block;font-size:16px;text-shadow:0 1px 8px #0005}
 .lock-widget p{font-size:11px;color:#ffffffd0;margin-top:8px;line-height:1.35}
-.swipe-hint{bottom:clamp(190px,25vh,245px);gap:8px;font-size:12px;font-weight:500}
+.swipe-hint{bottom:clamp(210px,27vh,260px);gap:8px;font-size:12px;font-weight:500}
 .swipe-hint .swipe-icon{width:39px;height:39px;border:1px solid #ffffffa6;background:#10182755;backdrop-filter:blur(16px);font-size:23px}
 .gesture-bar{position:absolute;z-index:3;bottom:max(8px,env(safe-area-inset-bottom));left:50%;transform:translateX(-50%);width:40px;height:4px;border-radius:9px;background:#ffffffc9;box-shadow:0 1px 8px #0007}
-.signin-screen{background-image:linear-gradient(180deg,rgba(4,9,18,.15),rgba(4,9,18,.32)),url('./Windows.jpg');background-position:center;background-size:cover}
+.signin-screen{background-image:linear-gradient(180deg,rgba(4,9,18,.15),rgba(4,9,18,.32)),url('https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=2200&q=90');background-position:center;background-size:cover}
 .signin-screen:before{background:linear-gradient(180deg,#06101b18,#06101b2e 70%,#06101b48)}
 .login{width:min(440px,calc(100% - 34px));padding:clamp(22px,4vh,40px) clamp(20px,4vw,34px);border:1px solid #ffffff30;border-radius:24px;background:rgba(12,19,32,.22);backdrop-filter:blur(22px) saturate(130%);-webkit-backdrop-filter:blur(22px) saturate(130%);box-shadow:0 24px 80px #0003,inset 0 1px #ffffff22}
 .avatar{width:clamp(72px,9vw,92px);height:clamp(72px,9vw,92px);margin-bottom:15px;background:rgba(240,244,255,.88);border:1px solid #ffffffa8;box-shadow:0 10px 30px #0002}
@@ -80,12 +80,12 @@
 @media(max-width:700px){
  .lock-time{top:clamp(48px,12vh,100px)}
  .lock-time strong{font-size:clamp(60px,15vw,82px)}
- .lock-widgets{bottom:max(28px,5vh);width:calc(100% - 24px)}
+ .lock-widgets{bottom:max(44px,9vh);width:calc(100% - 24px)}
  .widget-row{grid-template-columns:1fr;gap:8px}
  .lock-widget{min-height:0;padding:11px 13px}
  .lock-widget small{margin-bottom:4px}
  .lock-widget p{margin-top:4px}
- .swipe-hint{bottom:clamp(185px,28vh,230px)}
+ .swipe-hint{bottom:clamp(200px,30vh,245px)}
  .spotlight-chip{right:14px;top:14px}
  .spotlight-chip span{width:35px;height:35px}
  .login{border-radius:20px}
@@ -109,7 +109,7 @@
 <section id="lock" class="lock" aria-label="MAYUU Control Centre sign-in">
 <div class="lockscreen" id="lockscreen"><div class="spotlight-chip"><span>▧</span>Spotlight</div>
   <div class="lock-time"><strong id="lockClock">13:06</strong><span id="lockDate">Friday 20 November</span></div>
-  <div class="swipe-hint" id="swipeHint" role="button" tabindex="0" aria-label="Swipe up to unlock"><span class="swipe-icon">↑</span><span>Swipe up to unlock</span></div>
+  <div class="swipe-hint" id="swipeHint" aria-hidden="true"><span class="swipe-icon">↑</span><span>Swipe up to unlock</span></div>
   <div class="lock-widgets"><div class="widget-manage">＋ Manage widgets</div><div class="widget-row"><div class="lock-widget"><small>☼ &nbsp; Weather</small><b>Good day</b><p>Welcome to your workspace</p></div><div class="lock-widget"><small>▣ &nbsp; Quick updates</small><b>MAYUU CONTROL</b><p>Your repository command centre</p></div></div></div>
 </div><div class="gesture-bar" aria-hidden="true"></div>
 <div class="signin-screen" id="signinScreen">
@@ -145,8 +145,8 @@ $('#lock').addEventListener('touchstart',e=>{swipeStartY=e.touches[0].clientY},{
 $('#lock').addEventListener('touchend',e=>{if(swipeStartY===null)return;const delta=e.changedTouches[0].clientY-swipeStartY;if(delta < -45)showSignIn();swipeStartY=null},{passive:true});
 $('#lock').addEventListener('pointerdown',e=>{if(e.pointerType==='mouse')swipeStartY=e.clientY});
 $('#lock').addEventListener('pointerup',e=>{if(e.pointerType==='mouse'&&swipeStartY!==null){if(swipeStartY-e.clientY>45)showSignIn();swipeStartY=null}});
-$('#swipeHint').addEventListener('click',showSignIn);
-$('#swipeHint').addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();showSignIn()}});
+
+
 $('#forgotLogin').addEventListener('click',()=>toast('Password recovery will be available after secure sign-in is configured.'));
 
 if(sessionStorage.getItem('mayuu-ui-unlocked')==='1'){ $('#lock').classList.add('hidden');$('#app').classList.remove('hidden') }
