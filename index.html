@@ -6,7 +6,7 @@
 <style>
 :root{color-scheme:dark;--bg:#080b14;--panel:rgba(20,27,43,.78);--line:rgba(160,180,220,.13);--muted:#8995ad;--text:#eef3ff;--blue:#79a9ff;--cyan:#71e3e0;--good:#54d6a0;--bad:#ff7888}*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 15% 0%,#172b50 0,transparent 36%),radial-gradient(ellipse at 100% 15%,#142f38 0,transparent 30%),var(--bg);color:var(--text);font:14px/1.5 Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,sans-serif;min-height:100vh}button,input{font:inherit}button{cursor:pointer;color:inherit}.hidden{display:none!important}.lock{position:fixed;inset:0;z-index:20;min-height:100vh;overflow:hidden;padding:0;background:#101522;isolation:isolate;touch-action:none;color:#fff}
 .lockscreen,.signin-screen{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;overflow:hidden}
-.lockscreen{background:linear-gradient(180deg,rgba(5,10,22,.22),rgba(5,10,22,.42) 48%,rgba(5,10,22,.72)),url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=2200&q=90') center/cover;transition:transform .85s cubic-bezier(.2,.8,.2,1),opacity .7s}
+.lockscreen{background:linear-gradient(180deg,rgba(5,10,22,.22),rgba(5,10,22,.42) 48%,rgba(5,10,22,.72)),url('./Windows.jpg') center/cover;transition:transform .85s cubic-bezier(.2,.8,.2,1),opacity .7s}
 .lockscreen:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,#07101c30,#07101c00 48%,#07101c30);pointer-events:none}
 .lock-time{position:absolute;top:12%;left:0;right:0;text-align:center;text-shadow:0 3px 24px #0009;z-index:1}
 .lock-time strong{display:block;font-size:clamp(58px,10vw,92px);font-weight:300;line-height:1;letter-spacing:-.055em}
@@ -20,7 +20,7 @@
 .lock-widget p{margin:4px 0 0;color:#d5dbe5;font-size:10px}
 .swipe-hint{position:absolute;z-index:2;left:0;right:0;bottom:23%;display:flex;flex-direction:column;align-items:center;gap:8px;color:#fff;text-shadow:0 2px 12px #000;font-size:12px;animation:hintPulse 2s ease-in-out infinite;cursor:pointer}
 .swipe-hint .swipe-icon{width:35px;height:35px;border:1px solid #ffffff88;border-radius:50%;display:grid;place-items:center;font-size:19px;background:#10182755;backdrop-filter:blur(8px)}
-.signin-screen{background:linear-gradient(180deg,rgba(5,12,24,.15),rgba(4,9,18,.35)),url('https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=2200&q=90') center/cover;opacity:0;visibility:hidden;transform:translateY(7%);transition:opacity .65s ease,transform .85s cubic-bezier(.2,.8,.2,1),visibility .65s}
+.signin-screen{background:linear-gradient(180deg,rgba(5,12,24,.15),rgba(4,9,18,.35)),url('./Windows.jpg') center/cover;opacity:0;visibility:hidden;transform:translateY(7%);transition:opacity .65s ease,transform .85s cubic-bezier(.2,.8,.2,1),visibility .65s}
 .signin-screen:before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,#06101b38,#07101b0a 50%,#06101b30)}
 .login{position:relative;z-index:1;width:min(430px,calc(100% - 34px));text-align:center;padding:28px 22px;background:transparent;border:0;border-radius:0;box-shadow:none;backdrop-filter:none;animation:rise .8s cubic-bezier(.2,.8,.2,1)}
 .avatar{width:clamp(68px,9vw,88px);height:clamp(68px,9vw,88px);margin:0 auto 12px;border-radius:50%;display:grid;place-items:center;background:#eef2f7;color:#596273;box-shadow:0 5px 25px #0002}
