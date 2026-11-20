@@ -42,14 +42,76 @@
 @media(max-width:600px){.lock-time{top:13%}.lock-time strong{font-size:64px}.lock-widgets{bottom:7%}.widget-row{gap:8px}.lock-widget{padding:11px}.swipe-hint{bottom:25%}.login{padding:20px 12px}.signin-screen{background-position:center center}}
 @media(prefers-reduced-motion:reduce){.lockscreen,.signin-screen,.swipe-hint{transition:none;animation:none}}.primary{border:0;border-radius:13px;padding:13px 18px;background:linear-gradient(110deg,#3977e8,#39b9bd);font-weight:700;color:white;box-shadow:0 8px 30px #2879d944;transition:.25s}.primary:hover{transform:translateY(-2px);filter:brightness(1.12)}.app{display:grid;grid-template-columns:250px 1fr;min-height:100vh}.side{border-right:1px solid var(--line);background:#0b101cbb;padding:24px 16px;backdrop-filter:blur(20px)}.brand{display:flex;align-items:center;gap:12px;padding:0 10px 28px}.brandmark{width:38px;height:38px;border-radius:13px;display:grid;place-items:center;background:linear-gradient(145deg,#497fe7,#18334b);font-weight:900}.brand b{letter-spacing:.12em}.brand small{display:block;color:var(--muted);font-size:10px;letter-spacing:.18em}.navlabel{font-size:10px;letter-spacing:.17em;color:#66738e;padding:14px 12px 8px}.nav button{width:100%;text-align:left;border:1px solid transparent;background:transparent;padding:11px 12px;border-radius:12px;color:#aab6cd;margin:2px 0}.nav button.active,.nav button:hover{background:#1b2b48;border-color:#ffffff12;color:white}.nav span{display:inline-block;width:27px;color:#83aefc}.sidefoot{position:sticky;top:90vh;margin:32px 8px 0;color:var(--muted);font-size:11px}.main{min-width:0;padding:26px clamp(16px,3vw,42px)}.top{display:flex;justify-content:space-between;align-items:center;gap:15px;margin-bottom:30px}.crumb{color:var(--muted);font-size:12px}.top h2{margin:4px 0;font-size:24px}.actions{display:flex;gap:9px;align-items:center}.ghost{background:#ffffff08;border:1px solid var(--line);padding:10px 13px;border-radius:11px}.userpill{color:#b8c6df;background:#ffffff08;border:1px solid var(--line);border-radius:30px;padding:9px 13px}.hero{padding:26px;border:1px solid #7ca8ff22;border-radius:22px;background:linear-gradient(115deg,#172b4cdd,#102d35bb);display:flex;justify-content:space-between;align-items:center;gap:20px;overflow:hidden;position:relative}.hero:after{content:"";position:absolute;width:260px;height:260px;border:1px solid #8bc8ff22;border-radius:50%;right:8%;top:-160px;box-shadow:0 0 0 28px #8bc8ff08,0 0 0 58px #8bc8ff06}.hero h3{font-size:22px;margin:0 0 5px}.hero p{color:#afc0d8;margin:0}.status{font-size:12px;color:var(--good)}.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin:18px 0}.card{border:1px solid var(--line);background:var(--panel);backdrop-filter:blur(18px);border-radius:18px;padding:18px;box-shadow:0 12px 40px #0002}.statlabel{color:var(--muted);font-size:12px}.statnum{font-size:27px;font-weight:750;margin:6px 0}.statfoot{font-size:11px;color:#8d9bb4}.sectionhead{display:flex;justify-content:space-between;align-items:center;margin:28px 0 13px}.sectionhead h3{margin:0;font-size:16px}.repo-tools{display:flex;gap:9px;flex-wrap:wrap}.repo-tools input{min-width:180px;flex:1;background:#101827;border:1px solid var(--line);border-radius:11px;padding:10px 13px;color:white}.repo-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}.repo{padding:17px}.repohead{display:flex;justify-content:space-between;gap:12px}.repo h4{margin:0;font-size:14px}.repo p{margin:6px 0 13px;color:var(--muted);font-size:12px;overflow-wrap:anywhere}.tag{font-size:10px;padding:4px 8px;border-radius:20px;background:#54d6a018;color:#71dfb1;border:1px solid #54d6a033;height:max-content}.tag.private{color:#b5c3df;background:#ffffff0a;border-color:var(--line)}.repofoot{display:flex;justify-content:space-between;align-items:center;color:#8997b0;font-size:11px}.repofoot a{color:#91b9ff;text-decoration:none}.empty{color:var(--muted);padding:26px;text-align:center}.toast{position:fixed;bottom:22px;right:22px;padding:13px 17px;background:#162943;border:1px solid #6ca8ff55;border-radius:12px;box-shadow:0 12px 35px #0008;z-index:5}.page{display:none}.page.active{display:block}.callout{border:1px solid #e4b75b44;background:#b9872510;color:#d9c69d;border-radius:14px;padding:14px;font-size:12px;margin-top:16px}.footer{color:#63718b;font-size:11px;margin:26px 0}.mobilemenu{display:none}
 @keyframes rise{from{opacity:0;transform:translateY(18px) scale(.98)}to{opacity:1;transform:none}}@media(max-width:900px){.app{grid-template-columns:1fr}.side{position:sticky;top:0;z-index:3;padding:10px 14px;border-right:0;border-bottom:1px solid var(--line)}.brand{padding:0 4px 8px}.nav{display:flex;overflow:auto;gap:4px}.navlabel,.sidefoot{display:none}.nav button{white-space:nowrap;width:auto;padding:8px 11px}.nav span{width:auto;margin-right:5px}.main{padding:18px}.stats{grid-template-columns:repeat(2,1fr)}}@media(max-width:600px){.top{align-items:flex-start;flex-direction:column}.actions{width:100%;flex-wrap:wrap}.hero{align-items:flex-start;flex-direction:column}.repo-grid{grid-template-columns:1fr}.stats{gap:9px}.card{padding:14px}.statnum{font-size:23px}}
+
+/* Final lock-screen polish: keep every element visible and use clear glass layers */
+.lock{height:100svh;min-height:100svh;overflow:hidden;background:#0b1422}
+.lockscreen,.signin-screen{height:100%;min-height:100svh}
+.lockscreen{background-image:linear-gradient(180deg,rgba(4,9,18,.12) 0%,rgba(4,9,18,.16) 42%,rgba(4,9,18,.44) 100%),url('./Windows.jpg');background-position:center;background-size:cover}
+.lockscreen:after{background:linear-gradient(90deg,#07101c18,#07101c00 50%,#07101c18)}
+.lock-time{top:clamp(42px,11vh,112px)}
+.lock-time strong{font-size:clamp(62px,8.2vw,104px);font-weight:600;letter-spacing:-.065em;text-shadow:0 4px 28px #0009}
+.lock-time span{font-size:clamp(14px,1.3vw,18px);font-weight:600;margin-top:15px}
+.spotlight-chip{position:absolute;right:clamp(18px,3vw,46px);top:clamp(18px,3vh,32px);z-index:2;display:flex;flex-direction:column;align-items:center;gap:5px;color:#fff;text-shadow:0 2px 12px #000;font-size:11px}
+.spotlight-chip span{width:40px;height:40px;border:1px solid #ffffff80;border-radius:12px;display:grid;place-items:center;background:#0b142b45;backdrop-filter:blur(16px);font-size:20px}
+.lock-widgets{bottom:max(38px,5.2vh);width:min(660px,calc(100% - 36px));}
+.widget-manage{width:max-content;max-width:100%;margin:0 auto 9px;padding:9px 18px;border:1px solid #ffffff38;border-radius:10px;background:#111a2c80;backdrop-filter:blur(24px);box-shadow:0 8px 25px #0002;color:#fff;font-size:12px;font-weight:600}
+.widget-row{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.lock-widget{min-width:0;min-height:100px;padding:15px 17px;border:1px solid #ffffff42;border-radius:15px;background:rgba(20,26,38,.43);backdrop-filter:blur(26px) saturate(135%);-webkit-backdrop-filter:blur(26px) saturate(135%);box-shadow:0 12px 34px #0003,inset 0 1px #ffffff18}
+.lock-widget small{font-size:11px;color:#ffffffc9;margin-bottom:9px}
+.lock-widget b{display:block;font-size:16px;text-shadow:0 1px 8px #0005}
+.lock-widget p{font-size:11px;color:#ffffffd0;margin-top:8px;line-height:1.35}
+.swipe-hint{bottom:clamp(190px,25vh,245px);gap:8px;font-size:12px;font-weight:500}
+.swipe-hint .swipe-icon{width:39px;height:39px;border:1px solid #ffffffa6;background:#10182755;backdrop-filter:blur(16px);font-size:23px}
+.gesture-bar{position:absolute;z-index:3;bottom:max(8px,env(safe-area-inset-bottom));left:50%;transform:translateX(-50%);width:40px;height:4px;border-radius:9px;background:#ffffffc9;box-shadow:0 1px 8px #0007}
+.signin-screen{background-image:linear-gradient(180deg,rgba(4,9,18,.15),rgba(4,9,18,.32)),url('./Windows.jpg');background-position:center;background-size:cover}
+.signin-screen:before{background:linear-gradient(180deg,#06101b18,#06101b2e 70%,#06101b48)}
+.login{width:min(440px,calc(100% - 34px));padding:clamp(22px,4vh,40px) clamp(20px,4vw,34px);border:1px solid #ffffff30;border-radius:24px;background:rgba(12,19,32,.22);backdrop-filter:blur(22px) saturate(130%);-webkit-backdrop-filter:blur(22px) saturate(130%);box-shadow:0 24px 80px #0003,inset 0 1px #ffffff22}
+.avatar{width:clamp(72px,9vw,92px);height:clamp(72px,9vw,92px);margin-bottom:15px;background:rgba(240,244,255,.88);border:1px solid #ffffffa8;box-shadow:0 10px 30px #0002}
+.login h1{font-size:clamp(22px,3vw,28px);font-weight:600;text-shadow:0 2px 18px #000a}
+.login .welcome{font-size:13px;color:#fffffff0;margin:6px 0 21px}
+.login form{width:min(320px,100%);gap:11px}
+.login input{padding:14px 15px;border:1px solid #ffffff9c;border-radius:10px;background:rgba(7,13,24,.30);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);font-size:14px;box-shadow:inset 0 1px 8px #0002}
+.login input::placeholder{color:#ffffffdf}
+.login .signin-button{padding:13px 16px;border:1px solid #ffffff80;border-radius:10px;background:rgba(255,255,255,.20);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);font-size:13px;font-weight:650;letter-spacing:.02em}
+.login .signin-button:hover{background:rgba(255,255,255,.32)}
+.forgot-link{margin-top:17px;color:#fff;font-size:12px;text-shadow:0 1px 8px #0008}
+.login .brand-foot{font-size:9px;color:#ffffffd0;margin-top:22px}
+.login .note{font-size:10px;color:#ffffffb8;margin-top:12px}
+@media(max-width:700px){
+ .lock-time{top:clamp(48px,12vh,100px)}
+ .lock-time strong{font-size:clamp(60px,15vw,82px)}
+ .lock-widgets{bottom:max(28px,5vh);width:calc(100% - 24px)}
+ .widget-row{grid-template-columns:1fr;gap:8px}
+ .lock-widget{min-height:0;padding:11px 13px}
+ .lock-widget small{margin-bottom:4px}
+ .lock-widget p{margin-top:4px}
+ .swipe-hint{bottom:clamp(185px,28vh,230px)}
+ .spotlight-chip{right:14px;top:14px}
+ .spotlight-chip span{width:35px;height:35px}
+ .login{border-radius:20px}
+}
+@media(max-height:650px){
+ .lock-time{top:22px}
+ .lock-time strong{font-size:56px}
+ .lock-time span{margin-top:5px}
+ .lock-widgets{bottom:20px}
+ .lock-widget{min-height:70px;padding:9px 12px}
+ .lock-widget p{margin-top:3px}
+ .swipe-hint{bottom:155px}
+ .login{padding:16px 20px}
+ .avatar{width:62px;height:62px;margin-bottom:8px}
+ .login .welcome{margin-bottom:12px}
+ .login .brand-foot{margin-top:12px}
+}
+
 </style></head>
 <body>
 <section id="lock" class="lock" aria-label="MAYUU Control Centre sign-in">
-<div class="lockscreen" id="lockscreen">
+<div class="lockscreen" id="lockscreen"><div class="spotlight-chip"><span>▧</span>Spotlight</div>
   <div class="lock-time"><strong id="lockClock">13:06</strong><span id="lockDate">Friday 20 November</span></div>
   <div class="swipe-hint" id="swipeHint" role="button" tabindex="0" aria-label="Swipe up to unlock"><span class="swipe-icon">↑</span><span>Swipe up to unlock</span></div>
   <div class="lock-widgets"><div class="widget-manage">＋ Manage widgets</div><div class="widget-row"><div class="lock-widget"><small>☼ &nbsp; Weather</small><b>Good day</b><p>Welcome to your workspace</p></div><div class="lock-widget"><small>▣ &nbsp; Quick updates</small><b>MAYUU CONTROL</b><p>Your repository command centre</p></div></div></div>
-</div>
+</div><div class="gesture-bar" aria-hidden="true"></div>
 <div class="signin-screen" id="signinScreen">
   <div class="login">
     <div class="avatar" aria-hidden="true"><svg viewBox="0 0 100 100"><circle cx="50" cy="29" r="17"/><path d="M12 79c0-17 14-29 31-29h14c17 0 31 12 31 29 0 8-7 13-15 13H27c-8 0-15-5-15-13z"/></svg></div>
