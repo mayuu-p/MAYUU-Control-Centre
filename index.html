@@ -104,6 +104,24 @@
  .login .brand-foot{margin-top:12px}
 }
 
+
+/* Windows-style clear acrylic: transparent surfaces, deliberately NO blur */
+.lock,.lockscreen,.signin-screen{touch-action:none}
+.lock.is-dragging .lockscreen,.lock.is-dragging .signin-screen{transition:none!important}
+.lock.is-dragging .lockscreen{will-change:transform,opacity}
+.lock.is-dragging .signin-screen{will-change:transform,opacity}
+.lock-widgets,.widget-manage,.lock-widget,.spotlight-chip span,.swipe-hint .swipe-icon,.login,.login input,.login .signin-button{
+  -webkit-backdrop-filter:none!important;backdrop-filter:none!important
+}
+.lock-widget{background:rgba(12,18,29,.16);border:1px solid rgba(255,255,255,.36);box-shadow:0 5px 22px rgba(0,0,0,.10),inset 0 1px rgba(255,255,255,.13)}
+.widget-manage{background:rgba(12,18,29,.14);border-color:rgba(255,255,255,.36);box-shadow:0 4px 18px rgba(0,0,0,.10)}
+.spotlight-chip span,.swipe-hint .swipe-icon{background:rgba(12,18,29,.12)}
+.login{background:rgba(12,18,29,.13);border:1px solid rgba(255,255,255,.40);box-shadow:0 16px 48px rgba(0,0,0,.10),inset 0 1px rgba(255,255,255,.18)}
+.login input{background:rgba(8,14,24,.12);border:1px solid rgba(255,255,255,.68);box-shadow:inset 0 1px 4px rgba(0,0,0,.08)}
+.login .signin-button{background:rgba(255,255,255,.13);border:1px solid rgba(255,255,255,.55)}
+.login .signin-button:hover{background:rgba(255,255,255,.22)}
+.forgot-link{background:transparent}
+
 </style></head>
 <body>
 <section id="lock" class="lock" aria-label="MAYUU Control Centre sign-in">
@@ -139,12 +157,17 @@ function unlock(){if(!$('#pass').value.trim()){toast('Enter your dashboard passw
 $('#unlock').addEventListener('submit',e=>{e.preventDefault();unlock()});
 function updateLockClock(){const now=new Date();$('#lockClock').textContent=now.toLocaleTimeString([], {hour:'2-digit',minute:'2-digit',hour12:false});$('#lockDate').textContent=now.toLocaleDateString([], {weekday:'long',day:'numeric',month:'long'});}
 updateLockClock();setInterval(updateLockClock,15000);
-function showSignIn(){if($('#lock').classList.contains('show-login'))return;$('#lock').classList.add('show-login');setTimeout(()=>$('#pass').focus({preventScroll:true}),650);}
-let swipeStartY=null;
-$('#lock').addEventListener('touchstart',e=>{swipeStartY=e.touches[0].clientY},{passive:true});
-$('#lock').addEventListener('touchend',e=>{if(swipeStartY===null)return;const delta=e.changedTouches[0].clientY-swipeStartY;if(delta < -45)showSignIn();swipeStartY=null},{passive:true});
-$('#lock').addEventListener('pointerdown',e=>{if(e.pointerType==='mouse')swipeStartY=e.clientY});
-$('#lock').addEventListener('pointerup',e=>{if(e.pointerType==='mouse'&&swipeStartY!==null){if(swipeStartY-e.clientY>45)showSignIn();swipeStartY=null}});
+function showSignIn(){if($('#lock').classList.contains('show-login'))return;$('#lock').classList.add('show-login');}
+let dragState=null, dragProgress=0;
+const lockRoot=$('#lock'), lockLayer=$('#lockscreen'), signLayer=$('#signinScreen');
+function paintSwipe(p){dragProgress=Math.max(0,Math.min(1,p));const h=lockRoot.clientHeight||window.innerHeight;lockLayer.style.transform='translate3d(0,'+(-dragProgress*100)+'%,0)';lockLayer.style.opacity=String(1-dragProgress*.12);signLayer.style.transform='translate3d(0,'+((1-dragProgress)*100)+'%,0)';signLayer.style.opacity=String(dragProgress);signLayer.style.visibility=dragProgress>0?'visible':'hidden';}
+function settleSwipe(open){lockRoot.classList.remove('is-dragging');lockRoot.classList.toggle('show-login',open);lockLayer.style.transition='transform 760ms cubic-bezier(.18,.72,.2,1),opacity 600ms ease';signLayer.style.transition='transform 760ms cubic-bezier(.18,.72,.2,1),opacity 600ms ease';paintSwipe(open?1:0);window.setTimeout(()=>{lockLayer.style.removeProperty('transform');lockLayer.style.removeProperty('opacity');lockLayer.style.removeProperty('transition');signLayer.style.removeProperty('transform');signLayer.style.removeProperty('opacity');signLayer.style.removeProperty('visibility');signLayer.style.removeProperty('transition');dragProgress=open?1:0;if(open)$('#pass').focus({preventScroll:true});},790);}
+function beginSwipe(e){if(e.pointerType==='mouse'&&e.button!==0)return;const open=lockRoot.classList.contains('show-login');dragState={id:e.pointerId,startY:e.clientY,startX:e.clientX,startProgress:open?1:0,lastY:e.clientY,lastTime:performance.now(),velocity:0};lockRoot.classList.add('is-dragging');try{e.currentTarget.setPointerCapture(e.pointerId)}catch(_){}e.preventDefault();}
+function moveSwipe(e){if(!dragState||e.pointerId!==dragState.id)return;const now=performance.now(),dy=e.clientY-dragState.startY,dx=e.clientX-dragState.startX;if(Math.abs(dx)>Math.abs(dy)*1.35&&dragProgress===0)return;const h=lockRoot.clientHeight||window.innerHeight;const p=dragState.startProgress-dy/h;const dt=Math.max(1,now-dragState.lastTime);dragState.velocity=(e.clientY-dragState.lastY)/dt;dragState.lastY=e.clientY;dragState.lastTime=now;paintSwipe(p);e.preventDefault();}
+function endSwipe(e){if(!dragState||e.pointerId!==dragState.id)return;const wasOpen=dragState.startProgress===1;const moved=dragProgress-dragState.startProgress;const velocity=-dragState.velocity;let open=wasOpen;if(!wasOpen&&(dragProgress>.24||velocity>.55))open=true;else if(wasOpen&&(dragProgress<.76||velocity<-.55))open=false;dragState=null;settleSwipe(open);}
+lockLayer.addEventListener('pointerdown',beginSwipe);lockLayer.addEventListener('pointermove',moveSwipe);lockLayer.addEventListener('pointerup',endSwipe);lockLayer.addEventListener('pointercancel',endSwipe);
+signLayer.addEventListener('pointerdown',beginSwipe);signLayer.addEventListener('pointermove',moveSwipe);signLayer.addEventListener('pointerup',endSwipe);signLayer.addEventListener('pointercancel',endSwipe);
+
 
 
 $('#forgotLogin').addEventListener('click',()=>toast('Password recovery will be available after secure sign-in is configured.'));
